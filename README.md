@@ -1,124 +1,85 @@
-# 🌦️ Weather-MB (Retro Pixel Weather)
+<div align="center">
 
-Ứng dụng dự báo thời tiết cá nhân nhỏ gọn, viết bằng **Flutter (Material 3 + Riverpod)** với phong cách đồ họa **Retro Pixel Art** hoài cổ (viền đen phẳng 2px, đổ bóng đặc 3px không bo góc, font monospace, icon thời tiết 8-bit và màu nền biến đổi linh hoạt theo trạng thái thời tiết).
+# 🌦️ Weather-MB
+### *Ứng dụng Thời Tiết Cá Nhân Phong Cách Retro Pixel Art*
 
----
+[![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20iOS-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/maico-le/weather-mb/releases)
+[![Version](https://img.shields.io/badge/Version-v1.0.0-FA520F?style=for-the-badge)](https://github.com/maico-le/weather-mb/releases/latest)
+[![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
+[![No Ads](https://img.shields.io/badge/No_Ads-100%25-brightgreen?style=for-the-badge)](#)
 
-## 🚀 Tính năng nổi bật (MVP)
+<br/>
 
-1. **Màn hình chính toàn diện**:
-   - Tên địa điểm, nhiệt độ hiện tại siêu to nổi bật (chạm để chuyển nhanh giữa °C và °F).
-   - Mô tả thời tiết tiếng Việt chuẩn hóa, icon thời tiết vẽ bằng pixel canvas 8-bit.
-   - Các chỉ số khí tượng chi tiết: Cảm giác như, Độ ẩm (%), Tốc độ & hướng gió, Chỉ số UV (đánh giá mức độ nguy hại), Tầm nhìn (km), Áp suất (hPa).
-2. **Dự báo theo giờ (Hourly)**:
-   - Danh sách cuộn ngang 8 khung giờ (khoảng cách 3 tiếng: 00:00, 03:00, 06:00, 09:00, 12:00, 15:00, 18:00, 21:00) kèm icon thời tiết, nhiệt độ và xác suất mưa (%).
-3. **Dự báo 3 ngày (Daily)**:
-   - Thẻ dự báo Hôm nay, Ngày mai, Ngày kia với nhiệt độ Min/Max, icon và giờ mặt trời mọc / lặn.
-4. **Quản lý địa điểm yêu thích**:
-   - Tìm và thêm thành phố mới vào danh sách yêu thích (tối đa 5 địa điểm).
-   - Đặt 1 địa điểm yêu thích làm mặc định khi mở app.
-   - Chuyển đổi nhanh giữa các thành phố chỉ với 1 chạm.
-5. **Cơ chế Cache Ngoại Tuyến (Offline-First)**:
-   - Tự động lưu trữ phản hồi thô gần nhất vào `shared_preferences`.
-   - Khi không có mạng (hoặc máy chủ không phản hồi), ứng dụng hiển thị dữ liệu cache gần nhất kèm thanh cảnh báo `⚡ Đang xem dữ liệu ngoại tuyến (Cập nhật lúc HH:mm)`.
-   - Cơ chế tự động làm mới: Chỉ gọi lại API nếu cache cũ hơn 30 phút hoặc khi người dùng chủ động kéo xuống để làm mới (Pull-to-refresh) hoặc ấn nút Refresh.
-6. **Phong cách Retro Pixel Art**:
-   - Nút bấm cơ học stepped press (nhảy bước tức thì khi chạm).
-   - Bảng màu nền thông minh tự đổi theo điều kiện: Nắng ấm (Cam/Vàng Mistral), Mưa/Dông (Xanh mưa Slate), Mây/Sương mù (Xám tro), Ban đêm (Xanh chàm huyền bí).
-   - Hỗ trợ cả Light Mode và Dark Mode.
+### 📲 [👉 TẢI VỀ FILE CÀI ĐẶT APK CHO ANDROID (BẢN MỚI NHẤT) 👈](https://github.com/maico-le/weather-mb/releases/latest/download/app-release.apk)
+*Hoặc truy cập trang [GitHub Releases](https://github.com/maico-le/weather-mb/releases) để xem toàn bộ lịch sử các bản cập nhật.*
 
 ---
 
-## 📁 Cấu trúc thư mục
+</div>
 
-```
-weather-mb/
-  android/                     # Cấu hình Android (đã bật quyền INTERNET)
-  ios/                         # Cấu hình iOS
-  lib/
-    main.dart                  # Khởi tạo SharedPreferences & ProviderScope
-    models/
-      weather_models.dart      # WeatherData, CurrentCondition, DayForecast, HourForecast
-    services/
-      weather_service.dart     # WeatherServiceBase (interface) & WttrWeatherService
-      cache_service.dart       # Quản lý lưu trữ Shared Preferences & cache 30 phút
-    providers/
-      weather_provider.dart    # Riverpod Notifier & AsyncNotifier quản lý state
-    screens/
-      home_screen.dart         # Màn hình chính
-      locations_screen.dart    # Quản lý danh sách địa điểm yêu thích
-      settings_screen.dart     # Đổi đơn vị °C/°F, xem và dọn dẹp cache
-    widgets/
-      pixel_widgets.dart       # PixelCard, PixelButton, PixelBadge
-      pixel_weather_icon.dart  # CustomPainter vẽ icon pixel 8-bit (Nắng, Mây, Mưa, Sét...)
-      hourly_forecast_card.dart# Thẻ dự báo theo giờ
-      daily_forecast_card.dart # Thẻ dự báo 3 ngày
-      weather_details_grid.dart# Lưới 6 chỉ số khí tượng
-      pixel_loading_view.dart  # Màn hình skeleton 8-bit khi tải dữ liệu
-      pixel_error_view.dart    # Màn hình thông báo lỗi và nút thử lại
-    utils/
-      weather_code_utils.dart  # Ánh xạ mã thời tiết sang tiếng Việt, icon & bảng màu
-  test/
-    cache_service_test.dart    # Kiểm thử logic cache & danh sách yêu thích
-    weather_models_test.dart   # Kiểm thử parse JSON an toàn
-    weather_service_test.dart  # Kiểm thử gọi API với MockClient
-    widget_test.dart           # Kiểm thử giao diện HomeScreen
-    live_api_integration_test.dart # Kiểm thử kết nối API wttr.in thực tế
-```
+## 💡 Giới thiệu
+
+**Weather-MB** là ứng dụng thời tiết nhỏ gọn, độc đáo dành cho những ai yêu thích phong cách **Retro Pixel Art cổ điển (8-Bit)** nhưng vẫn đòi hỏi độ chính xác và tính năng tiện dụng hiện đại. 
+
+Không quảng cáo, không theo dõi người dùng, mở lên là thấy ngay thông tin thời tiết cần thiết với giao diện khối hộp tương phản cao, sắc nét và cực kỳ cá tính.
 
 ---
 
-## 🛠️ Hướng dẫn cài đặt & Chạy ứng dụng
+## ✨ Tính năng nổi bật
 
-### 1. Yêu cầu môi trường
-- **Flutter SDK**: `>= 3.16.0` (Khuyến nghị 3.24+ / 3.47+)
-- **Dart SDK**: `>= 3.12.0 < 4.0.0`
-- Thiết bị hoặc máy ảo Android / iOS / Web / Desktop.
+### 🎨 1. Giao diện Pixel Art Hoài Cổ & Độc Bản
+- **Khối hộp sắc cạnh**: Thiết kế góc vuông tuyệt đối (`0-radius`), viền đen dày 2px và đổ bóng đặc 3D không làm mờ.
+- **Icon thời tiết 8-bit vẽ tay**: Hệ thống biểu tượng Mặt trời, Mặt trăng, Mây, Mưa rào, Sấm sét, Tuyết, Sương mù được vẽ tỉ mỉ bằng pixel canvas.
+- **Nút bấm cơ học (Stepped Press)**: Trải nghiệm chạm phản hồi cơ học tức thì như bấm phím máy chơi game console retro.
 
-### 2. Cài đặt các gói phụ thuộc
-```bash
-cd weather-mb
-flutter pub get
-```
+### 🌈 2. Màu nền thông minh biến đổi theo thời tiết
+Giao diện tự động thay đổi bảng màu theo trạng thái thực tế của bầu trời:
+- ☀️ **Trời nắng / Quang đãng**: Tông vàng nắng & cam Mistral ấm áp.
+- 🌧️ **Trời mưa / Dông bão**: Tông xanh mưa Slate & xám biển mát dịu.
+- ☁️ **Nhiều mây / Sương mù**: Tông xám tro tối giản, thanh lịch.
+- 🌙 **Ban đêm**: Tông xanh chàm & tím đêm huyền bí.
 
-### 3. Kiểm tra mã nguồn (Analyze)
-```bash
-flutter analyze
-```
-*(Đạt chuẩn: 0 lỗi, 0 cảnh báo)*
+### 📊 3. Trạm khí tượng bỏ túi toàn diện
+- **Nhiệt độ tức thời**: Chữ số hiển thị cỡ đại, chạm trực tiếp để chuyển nhanh giữa **°C** và **°F**.
+- **Cảm giác nhiệt thực tế (Feels Like)**: Biết chính xác ngoài trời nóng hay lạnh hơn thực tế bao nhiêu độ.
+- **6 chỉ số thời tiết chi tiết**: Độ ẩm không khí, Tốc độ & hướng gió, Chỉ số tia cực tím (UV Index có cảnh báo mức nguy hại), Tầm nhìn xa (km), và Áp suất khí quyển (hPa).
 
-### 4. Chạy bộ kiểm thử tự động (Unit & Widget Tests)
-```bash
-flutter test
-```
+### ⏱️ 4. Dự báo theo giờ & 3 ngày tới
+- **Khung 24 giờ**: Cuộn ngang 8 mốc thời gian trong ngày kèm icon thời tiết, nhiệt độ dự kiến và xác suất mưa (`%`).
+- **Dự báo 3 ngày**: Xem nhanh nhiệt độ Min/Max, tóm tắt thời tiết, cùng giờ mặt trời mọc (Sunrise) và mặt trời lặn (Sunset).
 
-### 5. Chạy ứng dụng
-```bash
-flutter run
-```
+### ⚡ 5. Hoạt động mượt mà cả khi Mất Mạng (Offline-First)
+- Tự động lưu trữ dữ liệu lần xem gần nhất vào máy.
+- Khi mất mạng hoặc đang đi trên đường, app vẫn hiển thị đầy đủ thông tin kèm thông báo `⚡ Đang xem dữ liệu ngoại tuyến (Cập nhật lúc HH:mm)`.
+- Tiết kiệm tối đa pin và 4G/5G nhờ cơ chế cache 30 phút.
+
+### 🚀 6. Tự động nhận bản cập nhật mới (In-App OTA)
+- Khi có bản nâng cấp mới trên GitHub, app sẽ tự động hiển thị banner thông báo ngay trên màn hình chính:
+  > **🚀 CÓ BẢN MỚI vX.X.X! — [TẢI VỀ]**
+- Chỉ cần chạm nút, điện thoại sẽ tự tải file APK mới về cài đè mà không bị mất dữ liệu đã lưu.
+
+### 📍 7. Quản lý thành phố yêu thích
+- Thêm và theo dõi thời tiết nhiều địa điểm (Hà Nội, Đà Nẵng, TP. Hồ Chí Minh, Tokyo, Paris...).
+- Ghim một địa điểm làm mặc định khi khởi động ứng dụng.
 
 ---
 
-## 🔄 Cách thay đổi nguồn dữ liệu API (ví dụ: sang Open-Meteo)
+## 📥 Hướng dẫn cài đặt cho Android (3 bước đơn giản)
 
-Dự án được thiết kế theo nguyên tắc phụ thuộc đảo ngược (Dependency Inversion) với giao diện trừu tượng `WeatherServiceBase`:
+1. Nhấn vào link: [**Tải app-release.apk**](https://github.com/maico-le/weather-mb/releases/latest/download/app-release.apk).
+2. Khi trình duyệt tải xong, nhấn vào file vừa tải để mở.
+   *(Nếu điện thoại hỏi "Cho phép cài đặt ứng dụng từ nguồn này", chọn **Cho phép / Allow**)*.
+3. Nhấn **Cài đặt (Install)** và mở ứng dụng để trải nghiệm ngay!
 
-1. Mở file [lib/services/weather_service.dart](file:///C:/PetProject/weather-mb/lib/services/weather_service.dart).
-2. Tạo một lớp mới hiện thực hóa `WeatherServiceBase`:
-   ```dart
-   class OpenMeteoWeatherService implements WeatherServiceBase {
-     @override
-     Future<WeatherData> fetchWeather(String location) async {
-       // 1. Gọi geocoding API của Open-Meteo để lấy lat/long từ tên location
-       // 2. Gọi https://api.open-meteo.com/v1/forecast?...
-       // 3. Map dữ liệu về đối tượng chuẩn WeatherData
-     }
-   }
-   ```
-3. Mở file [lib/providers/weather_provider.dart](file:///C:/PetProject/weather-mb/lib/providers/weather_provider.dart) và cập nhật `weatherServiceProvider`:
-   ```dart
-   final weatherServiceProvider = Provider<WeatherServiceBase>((ref) {
-     return OpenMeteoWeatherService(); // Thay thế WttrWeatherService()
-   });
-   ```
-Toàn bộ tầng giao diện (UI), bộ nhớ đệm (Cache), và quản lý trạng thái (Riverpod) sẽ hoạt động bình thường mà không cần sửa đổi bất kỳ dòng code nào khác.
+---
+
+## 🔒 Cam kết Quyền riêng tư
+- Ứng dụng **không thu thập bất kỳ thông tin cá nhân nào**.
+- Không yêu cầu quyền vị trí GPS nền (chỉ tìm kiếm theo tên thành phố bạn chọn).
+- Không chứa mã quảng cáo, SDK theo dõi của bên thứ ba.
+
+---
+
+<div align="center">
+  <sub>Phát triển bởi <a href="https://github.com/maico-le">maico-le</a> • Nguồn dữ liệu từ wttr.in</sub>
+</div>
