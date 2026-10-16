@@ -147,7 +147,7 @@ class CacheService {
   static const String keyGithubRepo = 'github_repo';
 
   String getGithubRepo() {
-    return _prefs.getString(keyGithubRepo) ?? '';
+    return _prefs.getString(keyGithubRepo) ?? 'maico-le/weather-mb';
   }
 
   Future<void> setGithubRepo(String repo) async {
