@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="assets/app_icon.png" alt="Weather-MB Logo" width="128" height="128" />
+
 # 🌦️ Weather-MB
 ### *Retro Pixel Weather Forecast for Android*
 
