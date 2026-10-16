@@ -153,4 +153,15 @@ class CacheService {
   Future<void> setGithubRepo(String repo) async {
     await _prefs.setString(keyGithubRepo, repo.trim());
   }
+
+  // --- Daily 6:00 AM Notification ---
+  static const String keyDailyNotificationEnabled = 'daily_notification_enabled';
+
+  bool isDailyNotificationEnabled() {
+    return _prefs.getBool(keyDailyNotificationEnabled) ?? true;
+  }
+
+  Future<void> setDailyNotificationEnabled(bool enabled) async {
+    await _prefs.setBool(keyDailyNotificationEnabled, enabled);
+  }
 }

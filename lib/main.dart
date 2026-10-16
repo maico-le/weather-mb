@@ -3,12 +3,28 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'providers/weather_provider.dart';
 import 'screens/home_screen.dart';
 import 'services/cache_service.dart';
+import 'services/notification_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Initialize offline cache service
   final cacheService = await CacheService.create();
+
+  // Initialize local notifications service
+  await NotificationService.instance.init();
+
+  // Schedule daily 6:00 AM weather notification if enabled
+  if (cacheService.isDailyNotificationEnabled()) {
+    final defaultLocation = cacheService.getDefaultLocation();
+    final cachedWeather = cacheService.getCachedWeather(defaultLocation);
+    final unit = cacheService.getTemperatureUnit();
+    await NotificationService.instance.scheduleDailyMorningWeatherNotification(
+      locationName: defaultLocation,
+      weatherData: cachedWeather,
+      unit: unit,
+    );
+  }
 
   runApp(
     ProviderScope(

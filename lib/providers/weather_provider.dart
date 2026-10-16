@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/weather_models.dart';
 import '../services/cache_service.dart';
+import '../services/notification_service.dart';
 import '../services/weather_service.dart';
 
 // --- Base Services Providers ---
@@ -114,6 +115,7 @@ class WeatherNotifier extends AsyncNotifier<WeatherData> {
     try {
       final fresh = await weatherService.fetchWeather(location);
       await cacheService.saveWeatherCache(location, fresh);
+      _syncScheduledNotification(cacheService, location, fresh);
       return fresh;
     } catch (e) {
       // If network fails but cache exists (even stale), return cache marked with isFromCache
@@ -121,6 +123,18 @@ class WeatherNotifier extends AsyncNotifier<WeatherData> {
         return cached.copyWith(isFromCache: true);
       }
       rethrow;
+    }
+  }
+
+  void _syncScheduledNotification(CacheService cacheService, String location, WeatherData data) {
+    if (cacheService.isDailyNotificationEnabled() &&
+        location.trim().toLowerCase() == cacheService.getDefaultLocation().trim().toLowerCase()) {
+      final unit = cacheService.getTemperatureUnit();
+      NotificationService.instance.scheduleDailyMorningWeatherNotification(
+        locationName: location,
+        weatherData: data,
+        unit: unit,
+      );
     }
   }
 
@@ -136,6 +150,7 @@ class WeatherNotifier extends AsyncNotifier<WeatherData> {
       try {
         final fresh = await weatherService.fetchWeather(location);
         await cacheService.saveWeatherCache(location, fresh);
+        _syncScheduledNotification(cacheService, location, fresh);
         state = AsyncData(fresh);
       } catch (e, stack) {
         if (cached != null) {

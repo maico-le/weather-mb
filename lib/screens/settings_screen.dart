@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/weather_models.dart';
+import '../providers/notification_provider.dart';
 import '../providers/update_provider.dart';
 import '../providers/weather_provider.dart';
 import '../widgets/pixel_widgets.dart';
@@ -188,6 +189,98 @@ class SettingsScreen extends ConsumerWidget {
                   ),
                 ],
               ),
+            ),
+            const SizedBox(height: 20),
+
+            // Daily Morning Notification Setting (06:00 AM)
+            const Text(
+              'THÔNG BÁO BUỔI SÁNG (06:00)',
+              style: TextStyle(
+                fontFamily: 'monospace',
+                fontWeight: FontWeight.w900,
+                fontSize: 12,
+                color: Color(0xFF1E1E1E),
+              ),
+            ),
+            const SizedBox(height: 8),
+            Consumer(
+              builder: (context, ref, _) {
+                final isNotificationEnabled = ref.watch(dailyNotificationEnabledProvider);
+                return PixelCard(
+                  backgroundColor: Colors.white,
+                  padding: const EdgeInsets.all(14),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Row(
+                        children: [
+                          const Icon(Icons.alarm_on, size: 22, color: Color(0xFFFA520F)),
+                          const SizedBox(width: 10),
+                          const Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Thông báo lúc 6:00 sáng',
+                                  style: TextStyle(
+                                    fontFamily: 'monospace',
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF1E1E1E),
+                                  ),
+                                ),
+                                SizedBox(height: 2),
+                                Text(
+                                  'Tự động gửi tóm tắt thời tiết hôm nay mỗi sáng lúc 6:00.',
+                                  style: TextStyle(
+                                    fontFamily: 'monospace',
+                                    fontSize: 11,
+                                    color: Color(0xFF64748B),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Switch(
+                            value: isNotificationEnabled,
+                            activeThumbColor: const Color(0xFFFA520F),
+                            onChanged: (val) {
+                              ref.read(dailyNotificationEnabledProvider.notifier).setEnabled(val);
+                            },
+                          ),
+                        ],
+                      ),
+                      if (isNotificationEnabled) ...[
+                        const Divider(height: 20, thickness: 1, color: Color(0xFFE2E8F0)),
+                        PixelButton(
+                          isSmall: true,
+                          backgroundColor: const Color(0xFF0284C7),
+                          onPressed: () async {
+                            await ref.read(dailyNotificationEnabledProvider.notifier).sendTestNotification();
+                            if (context.mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('Đã gửi thông báo thử nghiệm! Hãy kiểm tra thanh thông báo.'),
+                                  backgroundColor: Color(0xFF1E1E1E),
+                                  duration: Duration(seconds: 2),
+                                ),
+                              );
+                            }
+                          },
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.notifications_active, size: 14, color: Colors.white),
+                              SizedBox(width: 6),
+                              Text('GỬI THỬ THÔNG BÁO NGAY'),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
+                );
+              },
             ),
             const SizedBox(height: 20),
 
