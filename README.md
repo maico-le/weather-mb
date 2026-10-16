@@ -1,85 +1,86 @@
 <div align="center">
 
 # 🌦️ Weather-MB
-### *Ứng dụng Thời Tiết Cá Nhân Phong Cách Retro Pixel Art*
+### *Retro Pixel Weather Forecast for Android*
 
 [![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20iOS-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/maico-le/weather-mb/releases)
 [![Version](https://img.shields.io/badge/Version-v1.0.0-FA520F?style=for-the-badge)](https://github.com/maico-le/weather-mb/releases/latest)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
-[![No Ads](https://img.shields.io/badge/No_Ads-100%25-brightgreen?style=for-the-badge)](#)
+[![No Ads](https://img.shields.io/badge/Ads-100%25_Free-brightgreen?style=for-the-badge)](#)
 
 <br/>
 
-### 📲 [👉 TẢI VỀ FILE CÀI ĐẶT APK CHO ANDROID (BẢN MỚI NHẤT) 👈](https://github.com/maico-le/weather-mb/releases/latest/download/app-release.apk)
-*Hoặc truy cập trang [GitHub Releases](https://github.com/maico-le/weather-mb/releases) để xem toàn bộ lịch sử các bản cập nhật.*
+### 📲 [👉 DOWNLOAD LATEST ANDROID APK (DIRECT) 👈](https://github.com/maico-le/weather-mb/releases/latest/download/app-release.apk)
+*Or explore previous builds on the [GitHub Releases](https://github.com/maico-le/weather-mb/releases) page.*
 
 ---
 
 </div>
 
-## 💡 Giới thiệu
+## 💡 Overview
 
-**Weather-MB** là ứng dụng thời tiết nhỏ gọn, độc đáo dành cho những ai yêu thích phong cách **Retro Pixel Art cổ điển (8-Bit)** nhưng vẫn đòi hỏi độ chính xác và tính năng tiện dụng hiện đại. 
+**Weather-MB** is a distinctive, lightweight personal weather application designed for lovers of **8-bit Retro Pixel Art** who demand clean data, real-time accuracy, and modern mobile ergonomics.
 
-Không quảng cáo, không theo dõi người dùng, mở lên là thấy ngay thông tin thời tiết cần thiết với giao diện khối hộp tương phản cao, sắc nét và cực kỳ cá tính.
-
----
-
-## ✨ Tính năng nổi bật
-
-### 🎨 1. Giao diện Pixel Art Hoài Cổ & Độc Bản
-- **Khối hộp sắc cạnh**: Thiết kế góc vuông tuyệt đối (`0-radius`), viền đen dày 2px và đổ bóng đặc 3D không làm mờ.
-- **Icon thời tiết 8-bit vẽ tay**: Hệ thống biểu tượng Mặt trời, Mặt trăng, Mây, Mưa rào, Sấm sét, Tuyết, Sương mù được vẽ tỉ mỉ bằng pixel canvas.
-- **Nút bấm cơ học (Stepped Press)**: Trải nghiệm chạm phản hồi cơ học tức thì như bấm phím máy chơi game console retro.
-
-### 🌈 2. Màu nền thông minh biến đổi theo thời tiết
-Giao diện tự động thay đổi bảng màu theo trạng thái thực tế của bầu trời:
-- ☀️ **Trời nắng / Quang đãng**: Tông vàng nắng & cam Mistral ấm áp.
-- 🌧️ **Trời mưa / Dông bão**: Tông xanh mưa Slate & xám biển mát dịu.
-- ☁️ **Nhiều mây / Sương mù**: Tông xám tro tối giản, thanh lịch.
-- 🌙 **Ban đêm**: Tông xanh chàm & tím đêm huyền bí.
-
-### 📊 3. Trạm khí tượng bỏ túi toàn diện
-- **Nhiệt độ tức thời**: Chữ số hiển thị cỡ đại, chạm trực tiếp để chuyển nhanh giữa **°C** và **°F**.
-- **Cảm giác nhiệt thực tế (Feels Like)**: Biết chính xác ngoài trời nóng hay lạnh hơn thực tế bao nhiêu độ.
-- **6 chỉ số thời tiết chi tiết**: Độ ẩm không khí, Tốc độ & hướng gió, Chỉ số tia cực tím (UV Index có cảnh báo mức nguy hại), Tầm nhìn xa (km), và Áp suất khí quyển (hPa).
-
-### ⏱️ 4. Dự báo theo giờ & 3 ngày tới
-- **Khung 24 giờ**: Cuộn ngang 8 mốc thời gian trong ngày kèm icon thời tiết, nhiệt độ dự kiến và xác suất mưa (`%`).
-- **Dự báo 3 ngày**: Xem nhanh nhiệt độ Min/Max, tóm tắt thời tiết, cùng giờ mặt trời mọc (Sunrise) và mặt trời lặn (Sunset).
-
-### ⚡ 5. Hoạt động mượt mà cả khi Mất Mạng (Offline-First)
-- Tự động lưu trữ dữ liệu lần xem gần nhất vào máy.
-- Khi mất mạng hoặc đang đi trên đường, app vẫn hiển thị đầy đủ thông tin kèm thông báo `⚡ Đang xem dữ liệu ngoại tuyến (Cập nhật lúc HH:mm)`.
-- Tiết kiệm tối đa pin và 4G/5G nhờ cơ chế cache 30 phút.
-
-### 🚀 6. Tự động nhận bản cập nhật mới (In-App OTA)
-- Khi có bản nâng cấp mới trên GitHub, app sẽ tự động hiển thị banner thông báo ngay trên màn hình chính:
-  > **🚀 CÓ BẢN MỚI vX.X.X! — [TẢI VỀ]**
-- Chỉ cần chạm nút, điện thoại sẽ tự tải file APK mới về cài đè mà không bị mất dữ liệu đã lưu.
-
-### 📍 7. Quản lý thành phố yêu thích
-- Thêm và theo dõi thời tiết nhiều địa điểm (Hà Nội, Đà Nẵng, TP. Hồ Chí Minh, Tokyo, Paris...).
-- Ghim một địa điểm làm mặc định khi khởi động ứng dụng.
+Zero advertisements, zero user tracking, and zero bloat. Open the app to immediately see the forecast you need wrapped in high-contrast sharp geometry, mechanical tactile buttons, and handcrafted pixel icons.
 
 ---
 
-## 📥 Hướng dẫn cài đặt cho Android (3 bước đơn giản)
+## ✨ Features at a Glance
 
-1. Nhấn vào link: [**Tải app-release.apk**](https://github.com/maico-le/weather-mb/releases/latest/download/app-release.apk).
-2. Khi trình duyệt tải xong, nhấn vào file vừa tải để mở.
-   *(Nếu điện thoại hỏi "Cho phép cài đặt ứng dụng từ nguồn này", chọn **Cho phép / Allow**)*.
-3. Nhấn **Cài đặt (Install)** và mở ứng dụng để trải nghiệm ngay!
+### 🎨 1. Authentic 8-Bit Pixel Aesthetic
+- **Sharp Hard-Edged Geometry**: Pure `0-radius` rectangular framing, crisp 2.0px solid black borders, and stepped 3D offset box-shadows with zero blur.
+- **Handcrafted Pixel Weather Graphics**: Custom-drawn canvas pixel graphics for Sun, Moon, Clouds, Showers, Thunderstorms, Snow, and Mist.
+- **Mechanical Stepped Tactile Feel**: Instant zero-duration press response that mimics classic arcade and retro console buttons.
+
+### 🌈 2. Dynamic Sky Color Shifting
+The application background intuitively shifts in real-time to match the atmospheric conditions outside:
+- ☀️ **Clear / Sunny**: Warm radiant Amber & Mistral Orange.
+- 🌧️ **Rainy / Thunderstorm**: Moody Slate Blue & stormy sea tones.
+- ☁️ **Cloudy / Overcast / Foggy**: Cool minimalist Mist Grey.
+- 🌙 **Night Skies**: Deep Twilight Indigo & Midnight Violet.
+
+### 📊 3. Complete Pocket Meteorological Station
+- **Instant Temperature**: Giant monospace digits—tap directly on the temperature reading to instantly toggle between **°C** and **°F**.
+- **Real-Feel Thermal Index**: Know whether it feels warmer or colder than the thermometer reading.
+- **6 Key Metrics**: Humidity (`%`), Wind Speed & 16-point Compass Direction, UV Index (with health risk grading), Visibility distance (km), and Atmospheric Pressure (hPa).
+
+### ⏱️ 4. Hourly Breakdown & 3-Day Forecast
+- **24-Hour Horizon**: Smooth horizontal carousel of 8 three-hour intervals displaying icons, projected temperatures, and precipitation probability (`%`).
+- **3-Day Outlook**: Daily min/max temperatures, condition summaries, and precise Sunrise / Sunset times.
+
+### ⚡ 5. Offline-First Resilience
+- Built-in smart caching persists your latest forecast on disk.
+- If your signal drops or you travel off-grid, the app instantly displays cached data with a clear indicator: `⚡ Offline Data (Updated at HH:mm)`.
+- Automatic 30-minute cache expiration preserves battery and eliminates unnecessary network requests.
+
+### 🚀 6. In-App OTA Auto-Updates
+- Built-in GitHub Releases integration automatically checks for new versions.
+- When an update is published on GitHub, a prominent notification banner appears on the home screen:
+  > **🚀 NEW UPDATE vX.X.X AVAILABLE! — [DOWNLOAD]**
+- Tap once to download the new APK and install it over the previous version without losing settings or saved cities.
+
+### 📍 7. Multi-City Favorites
+- Search and pin your favorite destinations (Ho Chi Minh City, Hanoi, Da Nang, Tokyo, London...).
+- Designate any saved location as your default startup home screen.
 
 ---
 
-## 🔒 Cam kết Quyền riêng tư
-- Ứng dụng **không thu thập bất kỳ thông tin cá nhân nào**.
-- Không yêu cầu quyền vị trí GPS nền (chỉ tìm kiếm theo tên thành phố bạn chọn).
-- Không chứa mã quảng cáo, SDK theo dõi của bên thứ ba.
+## 📥 Quick Installation (Android)
+
+1. Tap to download: [**app-release.apk**](https://github.com/maico-le/weather-mb/releases/latest/download/app-release.apk).
+2. Once downloaded, tap the notification to open the APK file.
+   *(If prompted by Android, enable **Allow from this source** for your browser)*.
+3. Tap **Install** and launch Weather-MB!
+
+---
+
+## 🔒 Privacy & Independence Guarantee
+- **No Ads, Ever**: Free from tracking SDKs, banner ads, and third-party analytics.
+- **No Account Required**: No sign-ups, passwords, or emails.
+- **No Background GPS Abuse**: Queries strictly based on user-chosen city names.
 
 ---
 
 <div align="center">
-  <sub>Phát triển bởi <a href="https://github.com/maico-le">maico-le</a> • Nguồn dữ liệu từ wttr.in</sub>
+  <sub>Crafted with passion by <a href="https://github.com/maico-le">maico-le</a> • Powered by wttr.in weather data</sub>
 </div>
